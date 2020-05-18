@@ -1,3 +1,6 @@
+/* import css file datepicker */
+@import "/node_modules/js-datepicker/dist/datepicker.min.css";
+
 * {
   padding: 0;
   margin: 0;
@@ -10,7 +13,7 @@ body {
 
 main {
   width: 90%;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 82px auto 32px auto;
 
   display: -webkit-box;
@@ -35,28 +38,59 @@ main {
   align-items: center;
 }
 
-.source {
-  max-width: 500px;
+.clear {
+  clear: both;
 }
 
+.source {
+  width: 100%;
+  z-index: 99;
+}
+
+/* 
 .col {
   flex: auto;
   text-align: center;
-}
+  width: 100%;
+  height: auto;
+} */
 
 .kanvas {
-  position: relative;
-  margin: auto;
-  height: 80vh;
+  display: grid;
+  flex-direction: column;
+  /* grid-template-columns: repeat(1, 1fr); */
+  /* padding-bottom: 1em; */
+}
+
+.chart {
+  /* position: relative; */
+
+  height: 40vh;
   width: 80vw;
+}
+
+.text-kard-1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+#kard-1 {
+  background-color: lightgrey;
+}
+
+#kard-1:hover {
+  cursor: pointer;
 }
 
 img {
   max-width: 100%;
 }
 
-header,
-footer {
+.header,
+.footer {
   display: none;
 }
 
@@ -84,7 +118,8 @@ footer {
   border-style: solid;
   opacity: 1;
   border-radius: 50%;
-  animation: ldio-fkge51vk2zl 1.1904761904761905s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: ldio-fkge51vk2zl 1.1904761904761905s cubic-bezier(0, 0.2, 0.8, 1)
+    infinite;
 }
 
 .ldio-fkge51vk2zl div:nth-child(1) {
@@ -118,10 +153,45 @@ footer {
   box-sizing: content-box;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
+/* Float four columns side by side */
+.kolom {
+  /* float: left; */
   width: 100%;
+  padding: 0 10px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+/* Remove extra left and right margins, due to padding */
+.baris {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.baris:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .kolom {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.cartu {
+  box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
   text-align: center;
+  width: 95%;
+  color: #f1f1f1;
+  font-weight: bold;
+  height: 9em;
+  margin: auto;
 }

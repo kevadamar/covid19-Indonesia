@@ -21,7 +21,7 @@ class FuterContent extends HTMLElement {
                 }
                 h6{
                     padding: 13.9px;
-                    background: #e60649;
+                    background: rgb(255,10,50);
                     color: white;
                     text-align:center;
                     letter-spacing: 2px
@@ -33,7 +33,6 @@ class FuterContent extends HTMLElement {
                 </style>
                 <h6>&copy;2020 <a href="https://www.linkedin.com/in/keva-damar-galih-10708b190/" target="_blank">Keva</a></h6>
             `
-
     }
 }
 
