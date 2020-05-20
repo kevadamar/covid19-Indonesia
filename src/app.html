@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid19</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/bacteria.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 
-<body class="">
+<body>
     <div class="mb-3 header">
         <app-bar></app-bar>
     </div>
@@ -33,7 +32,7 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div class="cartu my-2 rounded-sm p-5" style="background:rgba(75,0, 0, 0.8)" id="card-1">
+                <div class="cartu my-2 rounded-sm p-5" style="background: rgba(75, 0, 0, 0.8)" id="card-1">
                     0
                 </div>
             </div>
@@ -50,16 +49,19 @@
         </div>
         <div class="row mt-3 text-center">
             <div class="col-md-12 my-2">
-                <!-- <input type="month" id="tgl" required> -->
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
                         <input-date></input-date>
                     </div>
+                    <div class="col-md-4"></div>
                 </div>
-                <div class="rowr text-white">
-                    <div class="col-md-12 bg-primary my-4 py-2">
-                        <div class="text-left">
-                            <h4>Kasus Terkonfirmasi</h4>
+                <div class="row text-white">
+                    <div class="col-md-12">
+                        <div id="title-confirm" class="bg-primary my-4 p-2 rounded-sm">
+                            <div class="text-left">
+                                <h4>KASUS TERKONFIRMASI</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,13 +83,16 @@
             </div>
         </div>
     </div>
-    <div class="mt-3 footer">
+    <div class="mt-3 footer text-center text-white py-3">
+        <a target="_blank" href="https://www.instagram.com/kevadamar/" class="h4 text-white"><i
+                class="fab fa-instagram"></i></a>
+        &nbsp;
+        <a target="_blank" href="https://github.com/kevadamar" class="h4 text-white"><i class="fab fa-github"></i></a>
+        &nbsp;
+        <a target="_blank" href="https://www.linkedin.com/in/keva-damar-galih-10708b190/" class="h4 text-white"><i
+                class="fab fa-linkedin"></i></a>
         <futer-content></futer-content>
     </div>
-
-    <!-- <main> -->
-
-    <!-- </main> -->
 
 </body>
 

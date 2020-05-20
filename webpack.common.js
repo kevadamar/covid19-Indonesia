@@ -19,15 +19,16 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
-        use: [{
-          loader: 'svg-inline-loader'
-        }]
-      }
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
+      favicon: "./src/assets/bacteria.png",
       template: "./src/app.html",
       filename: "index.html",
     }),

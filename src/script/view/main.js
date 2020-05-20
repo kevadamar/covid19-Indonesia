@@ -16,19 +16,13 @@ const main = async () => {
 
     let {
         charts
-    } = myChart
-
-    let positif, sembuh, meninggal;
-    let {
+    } = myChart, positif, sembuh, meninggal, {
         totalKasus,
-    } = responApi
-    let headers = {
+    } = responApi, headers = {
         headers: {
             "Content-Type": "application/json",
         },
-    };
-
-    let response = await totalKasus(headers)
+    }, response = await totalKasus(headers)
 
     positif = response.jumlahKasus
     sembuh = response.sembuh
@@ -43,20 +37,23 @@ const main = async () => {
 
     const options = {
         easingFn,
+        duration: 1.5
     };
 
     let count = new CountUp(card1, positif, options)
     let count2 = new CountUp(card2, sembuh, options)
     let count3 = new CountUp(card3, meninggal, options)
-    let countHover2 = new CountUp(card1, positif, options)
-    let countHover3 = new CountUp(card1, positif, options)
 
     //event card1
     card1.addEventListener("mouseover", e => {
         e.target.style.cursor = "pointer"
         e.target.style.backgroundColor = "#f1f1f1"
         e.target.style.color = "rgba(75,0, 0, 0.8)"
-        e.target.textContent = "Kasus Positif"
+
+        setTimeout(() => {
+            e.target.textContent = "Kasus Positif"
+        }, 200);
+
 
         console.log(e.target.textContent, "in")
     })
@@ -73,14 +70,18 @@ const main = async () => {
         } else {
             console.log("errormas")
         }
-    }) //end event card1
+    })
+    //end event card1
 
     //event card2
     card2.addEventListener("mouseover", e => {
         e.target.style.cursor = "pointer"
         e.target.style.backgroundColor = "#f1f1f1"
         e.target.style.color = "rgb(44, 238, 86)"
-        e.target.textContent = "Sembuh"
+
+        setTimeout(() => {
+            e.target.textContent = "Sembuh"
+        }, 200);
 
         console.log(e.target.textContent, "in")
     })
@@ -104,7 +105,10 @@ const main = async () => {
         e.target.style.cursor = "pointer"
         e.target.style.backgroundColor = "#f1f1f1"
         e.target.style.color = "rgb(241, 7, 7)"
-        e.target.textContent = "meninggal"
+
+        setTimeout(() => {
+            e.target.textContent = "Meninggal"
+        }, 200);
 
         console.log(e.target.textContent, "in")
     })
@@ -125,7 +129,7 @@ const main = async () => {
 
     setTimeout(() => {
         document.getElementById("source").style.display = "none";
-        document.querySelector(".header").style.display = "inline";
+        document.querySelector(".header").style.display = "block";
         document.querySelector(".footer").style.display = "block";
         document.querySelector(".kanvas").style.display = "block";
 

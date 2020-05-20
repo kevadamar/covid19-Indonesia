@@ -12,6 +12,7 @@ class FuterContent extends HTMLElement {
     }
 
     render() {
+
         this.shadowDom.innerHTML = `
                 <style>
                 *{
@@ -19,10 +20,8 @@ class FuterContent extends HTMLElement {
                     padding:0;
                     border-sizing:border-box
                 }
-                h6{
-                    padding: 13.9px;
-                    background: rgb(255,10,50);
-                    color: white;
+                h5{
+                    margin-top:.7em;
                     text-align:center;
                     letter-spacing: 2px
                 }
@@ -31,7 +30,7 @@ class FuterContent extends HTMLElement {
                     color:white
                 }
                 </style>
-                <h6>&copy;2020 <a href="https://www.linkedin.com/in/keva-damar-galih-10708b190/" target="_blank">Keva</a></h6>
+                <h5 id="futer-1">&copy;2020 Keva</h5>
             `
     }
 }
