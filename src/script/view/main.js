@@ -16,18 +16,21 @@ const main = async () => {
 
     let {
         charts
-    } = myChart, positif, sembuh, meninggal, {
+    } = myChart
+    let positif, sembuh, meninggal
+    let {
         totalKasus,
-    } = responApi, headers = {
-        headers: {
-            "Content-Type": "application/json",
+    } = responApi
+    let headers = {
+            headers: {
+                "Content-Type": "application/json",
+            },
         },
-    }, response = await totalKasus(headers)
+        response = await totalKasus(headers)
 
     positif = response.jumlahKasus
     sembuh = response.sembuh
     meninggal = response.meninggal
-
 
     const easingFn = function (t, b, c, d) {
         var ts = (t /= d) * t;
@@ -133,8 +136,7 @@ const main = async () => {
         document.querySelector(".footer").style.display = "block";
         document.querySelector(".kanvas").style.display = "block";
 
-
-        charts(new Date())
+        charts()
         if (!count.error && !count2.error && !count3.error) {
             count.start()
             count2.start()
@@ -143,6 +145,7 @@ const main = async () => {
             console.log(count.error)
         }
     }, 1950);
+
 };
 
 export default main;

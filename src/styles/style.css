@@ -166,3 +166,16 @@ img {
     align-items: center;
   }
 }
+
+#tgl {
+  padding: .25em;
+  width: 85%;
+  outline: none;
+  color: grey;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+}
+
+#chart1 {
+  transition: ease-in-out 1s;
+}

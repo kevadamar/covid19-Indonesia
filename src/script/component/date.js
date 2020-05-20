@@ -47,9 +47,12 @@ class InputDate extends HTMLElement {
       v.min = `${tahun}-01`;
       v.max = `${tahun}-12`;
       v.value = `${tahun}-${mon}`;
-      let ll = v.addEventListener("change", (e) => {
+      let ll = v.addEventListener("change", async (e) => {
         this.value = e.target.value;
-        myChart.charts(this.value);
+        let {
+          charts
+        } = myChart
+        await charts(e.target.value, true);
         // console.log(this.value)
       });
     });

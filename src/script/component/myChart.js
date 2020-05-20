@@ -1,17 +1,23 @@
 import Chart from "chart.js";
 import responApi from "../models/index.js";
+import {
+  chart1,
+  chart2,
+  chart3
+} from "./chartsConfig.js"
 
 let {
   harian
 } = responApi
 
 // let bol = false;
-const charts = async (det) => {
+const charts = async function (det, bool = false) {
+  let cek = bool
   let positif = [],
     sembuh = [],
     meninggal = [],
-    tgl = [],
-    config, config2, config3;
+    tgl = []
+
   const monthNames = [
     "Jan",
     "Feb",
@@ -26,9 +32,6 @@ const charts = async (det) => {
     "Nov",
     "Dec",
   ];
-  let ctx = document.getElementById("myChart").getContext("2d");
-  let ctx2 = document.getElementById("myChart2").getContext("2d");
-  let ctx3 = document.getElementById("myChart3").getContext("2d");
 
   let headers = {
     headers: {
@@ -39,186 +42,81 @@ const charts = async (det) => {
   let response = await harian()
 
   response = response.data.filter(val => val.jumlahKasusBaruperHari !== null)
-  response = response.filter(val => new Date(val.tanggal).getMonth() === new Date(det).getMonth())
+
+  response = response.filter(val => new Date(val.tanggal).getMonth() === (det !== undefined ? new Date(det).getMonth() : new Date().getMonth()))
+
+
+  //script update bug start
+
+  if (cek) {
+
+    //chart1 start
+    let ctx1 = document.getElementById("myChart1")
+    let ren1 = document.querySelector("#parent1 .chartjs-size-monitor")
+    ren1.remove()
+    ctx1.remove()
+    const parent1 = document.getElementById("parent1")
+    let el1 = document.createElement('canvas')
+    el1.id = 'myChart1'
+    el1.width = '400'
+    el1.height = `400`
+    parent1.appendChild(el1)
+    //chart1 end
+
+    //chart2 start
+    let ctx2 = document.getElementById("myChart2")
+    let ren2 = document.querySelector("#parent2 .chartjs-size-monitor")
+    ren2.remove()
+    ctx2.remove()
+    const parent2 = document.getElementById("parent2")
+    let el2 = document.createElement('canvas')
+    el2.id = 'myChart2'
+    el2.width = '400'
+    el2.height = `400`
+    parent2.appendChild(el2)
+    //chart2 end
+
+    //chart3 start
+    let ctx3 = document.getElementById("myChart3");
+    let ren3 = document.querySelector("#parent3 .chartjs-size-monitor")
+    ren3.remove()
+    ctx3.remove()
+    const parent3 = document.getElementById("parent3")
+    let el3 = document.createElement('canvas')
+    el3.id = 'myChart3'
+    el3.width = '400'
+    el3.height = `400`
+    parent3.appendChild(el3)
+    //chart3 end
+    cek = false
+  }
+  let varchart1 = chart1()
+  let varchart2 = chart2()
+  let varchart3 = chart3()
+
   response.forEach((val) => {
     let tanggal = new Date(val.tanggal).getDate();
     tgl.push(monthNames[new Date(val.tanggal).getMonth()] + " " + tanggal);
-    sembuh.push(val.jumlahKasusSembuhperHari);
     positif.push(val.jumlahKasusBaruperHari);
+    sembuh.push(val.jumlahKasusSembuhperHari);
     meninggal.push(val.jumlahKasusMeninggalperHari);
-    let tr = new Date(val.tanggal).getDate()
+
   });
-  // console.log(response);
-  //   });
 
-  config = {
-    type: "line",
-    data: {
-      labels: tgl,
-      datasets: [{
-        label: "Kasus Positif",
-        data: positif,
-        backgroundColor: ["rgba(175, 92, 192, 0.2)"],
-        borderColor: ["rgba(75,0, 0, 1)"],
-        borderWidth: 2,
-        radius: 20,
-        pointBackgroundColor: "rgba(75,0, 0, 1)",
-        spanGaps: true,
-        pointRadius: 4,
-        hoverBackgroundColor: "rgba(75,0, 0, 1)",
-        pointHoverBorderWidth: 10,
-        lineTension: 0,
-        borderJoinStyle: "bevel",
-      }],
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            suggestedMax: 1000
-          },
-        }],
-      },
-      animation: {
-        duration: 2000,
-      },
-      hover: {
-        animationDuration: 800,
-      },
-      layout: {
-        padding: {
-          left: 13,
-          right: 0,
-          top: 0,
-          bottom: 0,
-        },
-      },
-      elements: {
-        point: {
-          hoverRadius: 8,
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      tooltips: {
-        mode: "index",
-      },
-    },
-  }
-  config2 = {
-    type: "line",
-    data: {
-      labels: tgl,
-      datasets: [{
-        label: "Sembuh",
-        data: sembuh,
-        backgroundColor: ["rgba(154, 62, 235, 0.2)"],
-        borderColor: ["rgba(75, 192, 0, 1)"],
-        borderWidth: 2,
-        radius: 20,
-        pointBackgroundColor: "rgba(75, 192, 0, 1)",
-        spanGaps: true,
-        pointRadius: 4,
-        hoverBackgroundColor: "green",
-        pointHoverBorderWidth: 10,
-        lineTension: 0,
-      }],
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            suggestedMax: 1000
-          },
-        }],
-      },
+  varchart1.data.datasets[0].data = positif
+  varchart1.data.labels = tgl
+  varchart1.update()
 
-      animation: {
-        duration: 2000,
-      },
-      hover: {
-        animationDuration: 800,
-      },
-      layout: {
-        padding: {
-          left: 13,
-          right: 0,
-          top: 0,
-          bottom: 0,
-        },
-      },
-      elements: {
-        point: {
-          hoverRadius: 8,
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      tooltips: {
-        mode: "index",
-      },
-    },
-  }
-  config3 = {
-    type: "line",
-    data: {
-      labels: tgl,
-      datasets: [{
-        label: "Meninggal",
-        data: meninggal,
-        backgroundColor: ["rgba(154, 62, 235, 0.2)"],
-        borderColor: ["red"],
-        borderWidth: 2,
-        radius: 20,
-        pointBackgroundColor: "red",
-        spanGaps: true,
-        pointRadius: 4,
-        hoverBackgroundColor: "red",
-        pointHoverBorderWidth: 10,
-        lineTension: 0,
-      }, ],
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            suggestedMax: 1000
-          },
-        }],
-      },
-      animation: {
-        duration: 2000,
-      },
-      hover: {
-        animationDuration: 800,
-      },
-      layout: {
-        padding: {
-          left: 13,
-          right: 0,
-          top: 0,
-          bottom: 0,
-        },
-      },
-      elements: {
-        point: {
-          hoverRadius: 8,
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      tooltips: {
-        mode: "index",
-      },
-    },
-  }
+  varchart2.data.datasets[0].data = sembuh
+  varchart2.data.labels = tgl
+  varchart2.update()
 
-  let chart1 = new Chart(ctx, config),
-    chart2 = new Chart(ctx2, config2),
-    chart3 = new Chart(ctx3, config3);
+  varchart3.data.datasets[0].data = meninggal
+  varchart3.data.labels = tgl
+  varchart3.update()
+
+  //end
+
 };
 
 
