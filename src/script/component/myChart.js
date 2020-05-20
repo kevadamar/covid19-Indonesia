@@ -6,7 +6,7 @@ let {
 } = responApi
 
 // let bol = false;
-const charts = async (det = new Date()) => {
+const charts = async (det) => {
   let positif = [],
     sembuh = [],
     meninggal = [],

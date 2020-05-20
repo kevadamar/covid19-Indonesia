@@ -134,7 +134,7 @@ const main = async () => {
         document.querySelector(".kanvas").style.display = "block";
 
 
-        charts()
+        charts(new Date())
         if (!count.error && !count2.error && !count3.error) {
             count.start()
             count2.start()
