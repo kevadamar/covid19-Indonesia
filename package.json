@@ -26,7 +26,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "countup.js": "^2.0.5",
     "regenerator-runtime": "^0.13.5"
   }
